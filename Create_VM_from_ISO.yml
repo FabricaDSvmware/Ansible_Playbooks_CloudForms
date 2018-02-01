@@ -18,7 +18,7 @@
     - debug: var=memory
     - debug: var=network
     - debug: var=datastore
-    - debug: var=disk
+    - debug: var=disk_size
     - debug: var=notes
     - debug: var=manageiq.api_url
     - debug: var=manageiq.api_token
