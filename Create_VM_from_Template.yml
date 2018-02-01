@@ -106,17 +106,17 @@
 
     - debug: var=token_output
 
-    - set_fact: cf_vm_href="{{ token_output.json.resources[0].href }}"
+##    - set_fact: cf_vm_href="{{ token_output.json.resources[0].href }}"
 
-    - debug: var=cf_vm_href
+##    - debug: var=cf_vm_href
 
-    - name: Create an array of vms
-      set_fact:
-        vms: "{{ vms|default([]) + [ { 'href': svc_url, 'resource':  { 'href': item } } ] }}"
-      with_items:
-        - "{{ cf_vm_href }}"
+##    - name: Create an array of vms
+##      set_fact:
+##        vms: "{{ vms|default([]) + [ { 'href': svc_url, 'resource':  { 'href': item } } ] }}"
+##      with_items:
+##        - "{{ cf_vm_href }}"
 
-    - debug: var=vms
+##    - debug: var=vms
     
     - name: Register vm with the service
       uri:
