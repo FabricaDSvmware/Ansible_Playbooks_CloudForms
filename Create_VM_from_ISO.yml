@@ -71,6 +71,24 @@
 
     - debug: var=new_vm_uuid
 
+     - name: Gather the facts for the VM
+      vsphere_guest:
+        validate_certs: no
+        vcenter_hostname: "{{ vcenter_hostname }}"
+        guest: "{{ inventory_hostname }}"
+        vmware_guest_facts: yes
+      register: new_vm
+
+    - debug: var=new_vm    
+
+    - set_fact: new_vm_uuid="{{ new_vm.ansible_facts.hw_product_uuid }}"
+
+    - debug: var=new_vm_uuid
+
+    - set_fact: find_vm_url="{{ manageiq.api_url }}/api/vms?expand=resources&attributes=href,uid_ems&filter[]=uid_ems='{{ new_vm_uuid }}'"
+
+    - debug: var=find_vm_url
+
     - name: Call to CloudForms to find href for new_vm_uuid
       uri:
         url: "{{ find_vm_url }}"
