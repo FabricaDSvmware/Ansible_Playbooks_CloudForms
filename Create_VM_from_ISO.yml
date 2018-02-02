@@ -71,7 +71,7 @@
 
     - debug: var=new_vm_uuid
 
-     - name: Gather the facts for the VM
+    - name: Gather the facts for the VM
       vsphere_guest:
         validate_certs: no
         vcenter_hostname: "{{ vcenter_hostname }}"
